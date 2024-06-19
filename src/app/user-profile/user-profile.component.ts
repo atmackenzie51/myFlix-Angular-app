@@ -70,15 +70,6 @@ export class UserProfileComponent implements OnInit {
         this.router.navigate(['welcome']);
       });
     }
-    // this.router.navigate(['welcome']).then(() => {
-    //   localStorage.clear();
-    //   this.snackBar.open('User successfully deleted.', 'OK', {
-    //     duration: 2000
-    //   });
-    // })
-    // this.fetchProfile.deleteUser().subscribe((response) => {
-    //   console.log(response);
-    // });
   }
 
   getFavMovies(): void {
