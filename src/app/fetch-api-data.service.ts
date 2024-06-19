@@ -61,6 +61,12 @@ export class UserRegistrationService {
     );
   }
 
+  //make api call to the endpoint for a single user
+  getOneUser(): Observable<any> {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    return user;
+  }
+
   getDirector(): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http.get(apiUrl + 'movies/directors/:Name', {
