@@ -3,14 +3,14 @@ import { Router } from '@angular/router';
 
 /**
  * Component representing the navigation bar
- * @selector 'app-navbar'
+ * @selector 'mat-toolbar'
  * @templateUrl './navbar.component.html'
  * @styleUrls ['./navbar.component.scss']
  * 
  */
 
 @Component({
-  selector: 'mat-toolbar',
+  selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
