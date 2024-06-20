@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
  */
 
 @Component({
-  selector: 'app-navbar',
+  selector: 'mat-toolbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
