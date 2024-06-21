@@ -47,14 +47,14 @@ export class UserProfileComponent implements OnInit {
     this.userData.Password = this.user.Password;
     this.userData.Email = this.user.Email;
     this.userData.Birthday = this.user.Birthday;
-    this.fetchProfile.getAllMovies().subscribe((response) => {
-      this.FavoriteMovies = response.filter((movie: any) => this.user.FavoriteMovies.includes(movie._id));
-    });
+    //this.fetchProfile.getAllMovies().subscribe((response) => {
+    //  this.FavoriteMovies = response.filter((movie: any) => this.user.FavoriteMovies.includes(movie._id));
+    //});
   }
 
   updateProfile(): void {
     this.fetchProfile.editUser(this.userData).subscribe((response) => {
-      console.log('Profile Update', response);
+      console.log('Profile Updated to', response);
       localStorage.setItem('user', JSON.stringify(response));
       this.snackBar.open('Profile updated successfully', 'OK', {
         duration: 2000
@@ -76,7 +76,6 @@ export class UserProfileComponent implements OnInit {
     this.user = this.fetchProfile.getOneUser();
     this.userData.FavoriteMovies = this.user.FavoriteMovies;
     this.FavoriteMovies = this.user.FavoriteMovies;
-    console.log(`Here is this users ${this.FavoriteMovies}`);
   }
 
 
