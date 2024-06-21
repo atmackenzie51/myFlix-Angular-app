@@ -46,10 +46,18 @@ export class UserProfileComponent implements OnInit {
     this.userData.Username = this.user.Username;
     this.userData.Password = this.user.Password;
     this.userData.Email = this.user.Email;
-    this.userData.Birthday = this.user.Birthday;
+    this.userData.Birthday = this.formatDate(this.user.Birthday);
     //this.fetchProfile.getAllMovies().subscribe((response) => {
     //  this.FavoriteMovies = response.filter((movie: any) => this.user.FavoriteMovies.includes(movie._id));
     //});
+  }
+
+  formatDate(dateString: string): string {
+    const date = new Date(dateString);
+    const year = date.getUTCFullYear();
+    const month = (date.getUTCMonth() + 1).toString().padStart(2, '0');
+    const day = date.getUTCDate().toString().padStart(2, '0');
+    return `${year}-${month}-${day}`;
   }
 
   updateProfile(): void {
