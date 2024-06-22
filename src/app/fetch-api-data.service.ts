@@ -30,6 +30,7 @@ export class UserRegistrationService {
     );
   }
 
+
   getAllMovies(): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http.get(apiUrl + 'movies', {
@@ -43,9 +44,9 @@ export class UserRegistrationService {
     );
   }
   // Non-typed response extraction
-  private extractResponseData(res: Object): any {
-    const body = res;
-    return body || {};
+  private extractResponseData(response: any): any {
+    console.log('Response from server:', response);
+    return response || {};
   }
 
   getOneMovie(title: string): Observable<any> {
@@ -121,12 +122,20 @@ export class UserRegistrationService {
   }
 
   editUser(userDetails: any): Observable<any> {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
     const token = localStorage.getItem('token');
-    return this.http.put(apiUrl + 'users/' + userDetails.Username, userDetails, {
-      headers: new HttpHeaders(
-        {
-          Authorization: 'Bearer ' + token,
-        })
+
+    // Clone userDetails to avoid mutating the original object
+    const updatedDetails = { ...userDetails };
+
+    // Remove the password field if it exists
+    delete updatedDetails.Password;
+
+    return this.http.put(`${apiUrl}users/${user.Username}`, userDetails, {
+      headers: new HttpHeaders({
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      })
     }).pipe(
       map(this.extractResponseData),
       catchError(this.handleError)
