@@ -132,7 +132,7 @@ export class UserRegistrationService {
     // Remove the password field if it exists
     delete updatedDetails.Password;
 
-    return this.http.put(`${apiUrl}users/${user.Username}`, userDetails, {
+    return this.http.put(`${apiUrl}users/${user.Username}`, updatedDetails, {
       headers: new HttpHeaders({
         Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json'
