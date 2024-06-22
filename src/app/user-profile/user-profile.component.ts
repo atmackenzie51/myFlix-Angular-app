@@ -64,6 +64,7 @@ export class UserProfileComponent implements OnInit {
     this.fetchProfile.editUser(this.userData).subscribe({
       next: (response) => {
         console.log('Profile Updated to:', response);
+        localStorage.setItem('user', JSON.stringify(response));
         this.snackBar.open('Profile updated successfully', 'OK', {
           duration: 2000
         });
