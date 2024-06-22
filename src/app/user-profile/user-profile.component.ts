@@ -61,12 +61,19 @@ export class UserProfileComponent implements OnInit {
   }
 
   updateProfile(): void {
-    this.fetchProfile.editUser(this.userData).subscribe((response) => {
-      console.log('Profile Updated to', response);
-      localStorage.setItem('user', JSON.stringify(response));
-      this.snackBar.open('Profile updated successfully', 'OK', {
-        duration: 2000
-      });
+    this.fetchProfile.editUser(this.userData).subscribe({
+      next: (response) => {
+        console.log('Profile Updated to:', response);
+        this.snackBar.open('Profile updated successfully', 'OK', {
+          duration: 2000
+        });
+      },
+      error: (error) => {
+        console.error('Error updating profile:', error);
+        this.snackBar.open('Failed to update profile', 'OK', {
+          duration: 2000
+        });
+      }
     });
   }
 
