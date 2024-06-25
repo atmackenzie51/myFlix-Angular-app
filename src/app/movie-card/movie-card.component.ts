@@ -78,10 +78,10 @@ export class MovieCardComponent implements OnInit {
   //   })
   // }
 
-  openSynopsisDialog(description: string): void {
+  openSynopsisDialog(Description: string): void {
     this.dialog.open(MovieSynopsisComponent, {
       data: {
-        Description: description
+        Description: Description
       },
       width: '400px'
     })
