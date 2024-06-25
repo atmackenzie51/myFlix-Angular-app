@@ -144,15 +144,23 @@ export class UserRegistrationService {
   }
 
   deleteUser(): Observable<any> {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
     const token = localStorage.getItem('token');
-    return this.http.delete(apiUrl + 'users/:Username', {
-      headers: new HttpHeaders(
-        {
-          Authorization: 'Bearer ' + token,
-        })
+    console.log('Deleting user with username:', user.Username, 'Token:', token);
+
+    return this.http.delete(`${apiUrl}users/${user.Username}`, {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + token,
+      })
     }).pipe(
-      map(this.extractResponseData),
-      catchError(this.handleError)
+      map((response) => {
+        console.log('Delete user response:', response); // Log the response
+        return this.extractResponseData(response);
+      }),
+      catchError((error) => {
+        console.error('Error in deleteUser API call:', error); // Log the error
+        return this.handleError(error);
+      })
     );
   }
 

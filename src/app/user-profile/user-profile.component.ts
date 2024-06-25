@@ -78,15 +78,48 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
+
+  //chatGPT thinks that maybe the error code 200 that my API uses is incompatible with Angular's required 204 for a correct deletion request. However, Heroku will not log me in and update the API. The MFA is incorrect for some reason and they will not provide support without logging in...
   deleteUser(): void {
     if (confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
-      this.fetchProfile.deleteUser().subscribe((response) => {
-        console.log('Deleted User', response);
-        localStorage.clear();
-        this.router.navigate(['welcome']);
+      console.log('Attempting to delete user:', this.userData.Username);
+      this.fetchProfile.deleteUser().subscribe({
+        next: () => {
+          console.log('Deleted user:', this.userData.Username);
+          localStorage.clear();
+          console.log('Local storage cleared');
+          this.navigateToWelcomeScreen();
+        },
+        error: (error) => {
+          console.error('Error deleting user:', error);
+          this.snackBar.open('Failed to delete user. Please try again later.', 'OK', {
+            duration: 3000
+          });
+        }
       });
     }
   }
+
+  private handlePostDeleteActions(): void {
+    try {
+      localStorage.clear();
+      console.log('Local storage cleared');
+      this.navigateToWelcomeScreen();
+    } catch (err) {
+      console.error('Error clearing local storage:', err);
+    }
+  }
+
+  private navigateToWelcomeScreen(): void {
+    console.log('Attempting to navigate to welcome screen');
+    this.router.navigate(['welcome']).then(() => {
+      console.log('Navigation to welcome screen successful');
+    }).catch((err) => {
+      console.error('Navigation to welcome screen failed', err);
+    });
+  }
+
+
 
   getFavMovies(): void {
     this.user = this.fetchProfile.getOneUser();
