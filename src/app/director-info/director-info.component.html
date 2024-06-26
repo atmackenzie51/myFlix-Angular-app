@@ -1,1 +1,9 @@
-<p>director-info works!</p>
+<mat-card-header>
+  <mat-card-title style="margin-bottom: 10px;">{{data.Name}}</mat-card-title>
+</mat-card-header>
+<mat-card-content>
+  <b>Birthday:</b>
+  <p>{{data.Birth | date: 'longDate'}}</p>
+  <b>Bio</b>
+  <p>{{data.Bio}}</p>
+</mat-card-content>

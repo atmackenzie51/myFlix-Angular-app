@@ -2,7 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserRegistrationService } from '../fetch-api-data.service';
 import { MatDialog } from '@angular/material/dialog';
-//import { DirectorInfoComponent } from '../director-info/director-info.component';
+import { DirectorInfoComponent } from '../director-info/director-info.component';
 import { GenreInfoComponent } from '../genre-info/genre-info.component';
 import { MovieSynopsisComponent } from '../movie-synopsis/movie-synopsis.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -55,18 +55,18 @@ export class MovieCardComponent implements OnInit {
   }
 
   //Opening dialog boxes & displaying Director, Genre & Synopsis info
-  // openDirectorDialog(name: string, bio: string, birth: string, death: string): void {
-  //   this.dialog.open(DirectorInfoComponent, {
-  //     data: {
-  //       Name: name,
-  //       Bio: bio,
-  //       Birth: birth,
-  //       Death: death
-  //     },
-  //     // Assigning the dialog a width
-  //     width: '400px'
-  //   });
-  // }
+  openDirectorDialog(name: string, bio: string, birth: string, death: string): void {
+    this.dialog.open(DirectorInfoComponent, {
+      data: {
+        Name: name,
+        Bio: bio,
+        Birth: birth,
+        Death: death
+      },
+      // Assigning the dialog a width
+      width: '400px'
+    });
+  }
 
   openGenreDialog(name: string, description: string): void {
     this.dialog.open(GenreInfoComponent, {
