@@ -25,6 +25,7 @@ import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MovieSynopsisComponent } from './movie-synopsis/movie-synopsis.component';
+import { GenreInfoComponent } from './genre-info/genre-info.component';
 
 
 const appRoutes: Routes = [
@@ -45,7 +46,8 @@ const appRoutes: Routes = [
     WelcomePageComponent,
     UserProfileComponent,
     NavbarComponent,
-    MovieSynopsisComponent
+    MovieSynopsisComponent,
+    GenreInfoComponent
   ],
   imports: [
     BrowserModule,
