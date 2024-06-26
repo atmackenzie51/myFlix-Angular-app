@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserRegistrationService } from '../fetch-api-data.service';
 import { MatDialog } from '@angular/material/dialog';
 //import { DirectorInfoComponent } from '../director-info/director-info.component';
-//import { GenreInfoComponent } from '../genre-info/genre-info.component';
+import { GenreInfoComponent } from '../genre-info/genre-info.component';
 import { MovieSynopsisComponent } from '../movie-synopsis/movie-synopsis.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -68,15 +68,15 @@ export class MovieCardComponent implements OnInit {
   //   });
   // }
 
-  // openGenreDialog(name: string, description: string): void {
-  //   this.dialog.open(GenreInfoComponent, {
-  //     data: {
-  //       Name: name,
-  //       Description: description
-  //     },
-  //     width: '400px'
-  //   })
-  // }
+  openGenreDialog(name: string, description: string): void {
+    this.dialog.open(GenreInfoComponent, {
+      data: {
+        Name: name,
+        Description: description
+      },
+      width: '400px'
+    })
+  }
 
   openSynopsisDialog(Description: string): void {
     this.dialog.open(MovieSynopsisComponent, {
