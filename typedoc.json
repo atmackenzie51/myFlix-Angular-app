@@ -1,7 +1,7 @@
 {
-  // Comments are supported, like tsconfig.json
   "entryPoints": [
-    "src/main.ts"
+    "./src"
   ],
-  "out": "docs"
+  "out": "./docs",
+  "includes": "./src/**/*.ts"
 }
