@@ -1,15 +1,15 @@
+// src/app/user-profile/user-profile.component.ts
 import { Component, OnInit, Input } from '@angular/core';
 import { UserRegistrationService } from '../fetch-api-data.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 /**
- * Component representing the user profile
+ * Component representing the user profile.
  * @selector 'app-user-profile'
  * @templateUrl './user-profile.component.html'
  * @styleUrls ['./user-profile.component.scss']
  */
-
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
@@ -17,30 +17,43 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class UserProfileComponent implements OnInit {
 
+  /** Input data for user profile. */
   @Input() userData = { Username: '', Password: '', Email: '', Birthday: '', FavoriteMovies: [] };
+
+  /** Array to hold favorite movies of the user. */
   FavoriteMovies: any[] = [];
+
+  /** Array to hold all movies. */
   movies: any[] = [];
+
+  /** Object to store user profile data. */
   user: any = {};
 
-  /** 
-  * Called when creating an instance of the class
-  * @param fetchProfile - connects the client to the API
-  * @param snackBar - provides feedback after user interaction by displaying notifications
-  * @param router - the Router module for navigation
-  */
-
+  /**
+   * Constructor of UserProfileComponent.
+   * @param fetchProfile Service for fetching user profile data.
+   * @param snackBar Service for displaying notifications.
+   * @param router Angular router for navigation.
+   */
   constructor(
     public fetchProfile: UserRegistrationService,
     public snackBar: MatSnackBar,
     private router: Router
   ) { }
 
-  //once component has mounted these functions must be invoked, ie the profile info of the user & their list of fav movies
+  /**
+   * Lifecycle hook called after component initialization.
+   * Calls userProfile() and getFavMovies() methods to populate user profile data.
+   */
   ngOnInit(): void {
     this.userProfile();
     this.getFavMovies();
   }
 
+  /**
+   * Retrieves user profile data from the backend.
+   * Populates userData with user profile information and formats the birthday.
+   */
   userProfile(): void {
     this.user = this.fetchProfile.getOneUser();
     this.userData.Username = this.user.Username;
@@ -52,6 +65,11 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
+  /**
+   * Formats a given date string to YYYY-MM-DD format.
+   * @param dateString The date string to format.
+   * @returns Formatted date string (YYYY-MM-DD).
+   */
   formatDate(dateString: string): string {
     const date = new Date(dateString);
     const year = date.getUTCFullYear();
@@ -60,6 +78,10 @@ export class UserProfileComponent implements OnInit {
     return `${year}-${month}-${day}`;
   }
 
+  /**
+   * Updates user profile information.
+   * Displays success or error notifications using snackBar.
+   */
   updateProfile(): void {
     this.fetchProfile.editUser(this.userData).subscribe({
       next: (response) => {
@@ -78,8 +100,10 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
-
-  //chatGPT thinks that maybe the error code 200 that my API uses is incompatible with Angular's required 204 for a correct deletion request. However, Heroku will not log me in and update the API. The MFA is incorrect for some reason and they will not provide support without logging in...
+  /**
+   * Deletes user account.
+   * Prompts user for confirmation and handles success or error cases.
+   */
   deleteUser(): void {
     if (confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
       console.log('Attempting to delete user:', this.userData.Username);
@@ -100,6 +124,10 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
+  /**
+   * Handles post deletion actions.
+   * Clears local storage and navigates to the welcome screen.
+   */
   private handlePostDeleteActions(): void {
     try {
       localStorage.clear();
@@ -110,6 +138,10 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
+  /**
+   * Navigates to the welcome screen.
+   * Logs navigation success or failure to console.
+   */
   private navigateToWelcomeScreen(): void {
     console.log('Attempting to navigate to welcome screen');
     this.router.navigate(['welcome']).then(() => {
@@ -119,14 +151,14 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
-
-
+  /**
+   * Retrieves favorite movies of the user from the backend.
+   * Populates userData with favorite movie data.
+   */
   getFavMovies(): void {
     this.user = this.fetchProfile.getOneUser();
     this.userData.FavoriteMovies = this.user.FavoriteMovies;
     this.FavoriteMovies = this.user.FavoriteMovies;
   }
-
-
 
 }
