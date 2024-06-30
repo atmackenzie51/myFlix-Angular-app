@@ -1,0 +1,30 @@
+.movie-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  gap: 30px 20px;
+  position: relative;
+  top: 100px;
+}
+
+.movie-cards {
+  align-items: center;
+  justify-content: center;
+
+}
+
+.movie-card-img {
+  padding: 20px;
+  width: 200px;
+  height: 300px;
+}
+
+.movie-card-img:hover {
+  cursor: pointer;
+  opacity: 80%;
+}
+
+.mat-card-header {
+  background-color: #a4b0be;
+}

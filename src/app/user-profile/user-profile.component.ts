@@ -47,9 +47,9 @@ export class UserProfileComponent implements OnInit {
     this.userData.Password = this.user.Password;
     this.userData.Email = this.user.Email;
     this.userData.Birthday = this.formatDate(this.user.Birthday);
-    //this.fetchProfile.getAllMovies().subscribe((response) => {
-    //  this.FavoriteMovies = response.filter((movie: any) => this.user.FavoriteMovies.includes(movie._id));
-    //});
+    this.fetchProfile.getAllMovies().subscribe((response) => {
+      this.FavoriteMovies = response.filter((movie: any) => this.user.FavoriteMovies.includes(movie._id));
+    });
   }
 
   formatDate(dateString: string): string {

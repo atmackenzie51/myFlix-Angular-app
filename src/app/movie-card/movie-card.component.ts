@@ -87,39 +87,39 @@ export class MovieCardComponent implements OnInit {
     })
   }
 
-  // getFavMovies(): void {
-  //   this.user = this.fetchMovies.getOneUser();
-  //   this.userData.FavoriteMovies = this.user.FavoriteMovies;
-  //   this.FavoriteMovies = this.user.FavoriteMovies;
-  //   console.log('Users fav movies', this.FavoriteMovies);
-  // }
+  getFavMovies(): void {
+    this.user = this.fetchMovies.getOneUser();
+    this.userData.FavoriteMovies = this.user.FavoriteMovies;
+    this.FavoriteMovies = this.user.FavoriteMovies;
+    console.log('Users fav movies', this.FavoriteMovies);
+  }
 
-  // isFavoriteMovie(movieID: string): boolean {
-  //   const user = JSON.parse(localStorage.getItem('user') || '{}');
-  //   return user.FavoriteMovies.indexOf(movieID) >= 0;
-  // }
+  isFavoriteMovie(movieID: string): boolean {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    return user.FavoriteMovies.indexOf(movieID) >= 0;
+  }
 
-  // addFavMovies(movie: string): void {
-  //   this.user = this.fetchMovies.getOneUser();
-  //   this.userData.Username = this.user.Username;
-  //   this.fetchMovies.addFavMovies(movie).subscribe((response) => {
-  //     localStorage.setItem('user', JSON.stringify(response));
-  //     this.getFavMovies();
-  //     this.snackBar.open('Movie has been added to your favorites!', 'OK', {
-  //       duration: 3000,
-  //     });
-  //   });
-  // }
+  addFavMovies(movie: string): void {
+    this.user = this.fetchMovies.getOneUser();
+    this.userData.Username = this.user.Username;
+    this.fetchMovies.addFavMovies(movie).subscribe((response) => {
+      localStorage.setItem('user', JSON.stringify(response));
+      this.getFavMovies();
+      this.snackBar.open('Movie has been added to your favorites!', 'OK', {
+        duration: 3000,
+      });
+    });
+  }
 
-  // removeFavMovies(movie: any): void {
-  //   this.user = this.fetchMovies.getOneUser();
-  //   this.userData.Username = this.user.Username;
-  //   this.fetchMovies.deleteMovie(movie).subscribe((response) => {
-  //     localStorage.setItem('user', JSON.stringify(response));
-  //     this.getFavMovies();
-  //     this.snackBar.open('Movie has been deleted from your favorites!', 'OK', {
-  //       duration: 3000,
-  //     });
-  //   });
-  // }
+  removeFavMovies(movie: any): void {
+    this.user = this.fetchMovies.getOneUser();
+    this.userData.Username = this.user.Username;
+    this.fetchMovies.deleteFavMovie(movie).subscribe((response) => {
+      localStorage.setItem('user', JSON.stringify(response));
+      this.getFavMovies();
+      this.snackBar.open('Movie has been deleted from your favorites!', 'OK', {
+        duration: 3000,
+      });
+    });
+  }
 }
