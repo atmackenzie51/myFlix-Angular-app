@@ -111,10 +111,7 @@
           }
         },
         "deploy": {
-          "builder": "angular-cli-ghpages:deploy",
-          "options": {
-            "baseHref": "https://atmackenzie51.github.io/myFlix-Angular-client/angular-cli-ghpages/"
-          }
+          "builder": "angular-cli-ghpages:deploy"
         }
       }
     }
