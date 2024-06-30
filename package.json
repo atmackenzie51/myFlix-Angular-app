@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:myFlix-Angular-client": "node dist/my-flix-angular-client/server/server.mjs",
-    "deploy": "ng deploy --base-href=/myFlix-Angular-client/"
+    "deploy": "ng deploy --base-href=/myFlix-Angular-app/"
   },
   "private": true,
   "dependencies": {
