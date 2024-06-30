@@ -50,7 +50,7 @@
     <div class="fav-movies">
       <mat-card *ngFor="let movie of FavoriteMovies;">
         <mat-card-content>
-          <img class="movie-posters" src="{{movie.ImageURL}}" alt="{{movie.Title}}" />
+          <img class="movie-posters" src="{{movie.ImagePath}}" alt="{{movie.Title}}" />
         </mat-card-content>
       </mat-card>
       <div *ngIf="!FavoriteMovies || FavoriteMovies.length === 0">
