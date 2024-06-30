@@ -1,7 +1,6 @@
 {
   "entryPoints": [
-    "./src"
+    "src/**/*.ts" // Include all TypeScript files under the src directory
   ],
-  "out": "./docs",
-  "includes": "./src/**/*.ts"
+  "out": "docs"
 }
