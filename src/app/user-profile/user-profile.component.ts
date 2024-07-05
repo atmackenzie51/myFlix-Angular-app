@@ -125,20 +125,6 @@ export class UserProfileComponent implements OnInit {
   }
 
   /**
-   * Handles post deletion actions.
-   * Clears local storage and navigates to the welcome screen.
-   */
-  private handlePostDeleteActions(): void {
-    try {
-      localStorage.clear();
-      console.log('Local storage cleared');
-      this.navigateToWelcomeScreen();
-    } catch (err) {
-      console.error('Error clearing local storage:', err);
-    }
-  }
-
-  /**
    * Navigates to the welcome screen.
    * Logs navigation success or failure to console.
    */
