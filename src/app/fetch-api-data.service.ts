@@ -152,11 +152,17 @@ export class UserRegistrationService {
     return this.http.delete(`${apiUrl}users/${user.Username}`, {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + token,
-      })
+      }),
+      responseType: 'text' // Specify responseType as text
     }).pipe(
       map((response) => {
         console.log('Delete user response:', response); // Log the response
-        return this.extractResponseData(response);
+        // Handle non-JSON response here
+        if (typeof response === 'string' && response.includes('was deleted')) {
+          return response; // Return the response string
+        }
+        // If response is not as expected, handle it
+        throw new Error('Unexpected response format');
       }),
       catchError((error) => {
         console.error('Error in deleteUser API call:', error); // Log the error
@@ -164,6 +170,7 @@ export class UserRegistrationService {
       })
     );
   }
+
 
   deleteFavMovie(MovieID: any): Observable<any> {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
