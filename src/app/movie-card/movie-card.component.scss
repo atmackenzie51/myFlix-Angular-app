@@ -1,11 +1,15 @@
 .movie-container {
   display: flex;
   flex-wrap: wrap;
-  align-content: center;
-  justify-content: center;
   gap: 30px 20px;
   position: relative;
   top: 100px;
+  justify-content: center;
+}
+
+.mat-card-title {
+  word-wrap: break-word;
+  max-width: 280px;
 }
 
 .movie-cards {
@@ -15,7 +19,9 @@
 }
 
 .movie-card-img {
-  padding: 20px;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
   width: 200px;
   height: 300px;
 }
@@ -23,8 +29,4 @@
 .movie-card-img:hover {
   cursor: pointer;
   opacity: 80%;
-}
-
-.mat-card-header {
-  background-color: #a4b0be;
 }
